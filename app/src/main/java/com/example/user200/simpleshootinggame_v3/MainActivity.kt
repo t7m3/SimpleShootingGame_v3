@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity
 import android.util.DisplayMetrics
 import kotlinx.android.synthetic.main.activity_main.*
 
+    // 新しいブランチの確認のためのコミット
+
 class MainActivity : AppCompatActivity() {
 
     private var screenWidth = 0  //スクリーンの幅を格納する変数の宣言
