@@ -4,12 +4,14 @@ import android.os.Bundle
 import android.os.CountDownTimer
 import android.support.v7.app.AppCompatActivity
 import android.util.DisplayMetrics
+import android.widget.ImageView
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
     private var screenWidth = 0  //スクリーンの幅を格納する変数の宣言
     private var screenHeight = 0   //スクリーンの高さ格納する変数の宣言
+    private var  dirEnemy = 1  //imageViewEnemy の 方向を保存する変数
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +36,7 @@ class MainActivity : AppCompatActivity() {
         imageViewBullet.y = screenHeight.toFloat() * 0.4F
 
         // タイマのインスタンスの生成
-        val timer = MyCountDownTimer(5 * 60 * 1000, 100)
+        val timer = MyCountDownTimer(5 * 60 * 1000, 10)
         timerText.text = "5:00"
 
         // タイマのスタート
@@ -50,6 +52,9 @@ class MainActivity : AppCompatActivity() {
             val second = millisUntilFinished / 1000 % 60
             timerText.text = "%1d:%2$02d".format(minute, second)
 
+            // imageViewEnemy を左右に移動する
+            dirEnemy = imageViewMoveX(imageViewEnemy, 5, dirEnemy)
+
         }
 
         override fun onFinish() {
@@ -57,6 +62,21 @@ class MainActivity : AppCompatActivity() {
             timerText.text = "--:--"                                                         //デバッグ用
 
         }
+
+    }
+
+    //imageViewがx方向に移動するメソッド
+    fun imageViewMoveX(imageView:ImageView , x:Int , dir:Int ): Int{
+
+        var ret = dir
+
+        imageView.x = imageView.x + x * dir
+
+        if(imageView.x < 0 ||  screenWidth - imageView.width < imageView.x ){
+            ret = dir * -1; //移動の左右の向きを反転する
+        }
+
+        return ret
 
     }
 }
