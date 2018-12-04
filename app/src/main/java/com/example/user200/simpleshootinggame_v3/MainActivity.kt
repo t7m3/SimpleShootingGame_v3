@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.os.CountDownTimer
 import android.support.v7.app.AppCompatActivity
 import android.util.DisplayMetrics
+import android.view.MotionEvent
 import kotlinx.android.synthetic.main.activity_main.*
 
     // 前のブランチの確認のためのコミット
@@ -78,6 +79,39 @@ class MainActivity : AppCompatActivity() {
         }
 
         return ret
+
+    }
+
+    //画面タッチのメソッドの定義
+    override fun onTouchEvent(event: MotionEvent): Boolean {
+
+        val ex = event.x  //タッチした場所のＸ座標
+        val ey = event.y  //タッチした場所のＹ座標
+
+        textView.text = "X座標：$ex　Y座標：$ey"
+
+        when (event.action) {
+
+            MotionEvent.ACTION_DOWN -> {
+                textView.append("　ACTION_DOWN")
+                imageViewPlayer.x = ex
+            }
+
+            MotionEvent.ACTION_UP -> {
+                textView.append("　ACTION_UP")
+            }
+
+            MotionEvent.ACTION_MOVE -> {
+                textView.append("　ACTION_MOVE")
+                imageViewPlayer.x = ex
+            }
+
+            MotionEvent.ACTION_CANCEL -> {
+                textView.append("　ACTION_CANCEL")
+            }
+        }
+
+        return true
 
     }
 }
