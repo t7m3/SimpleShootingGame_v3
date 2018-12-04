@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.os.CountDownTimer
 import android.support.v7.app.AppCompatActivity
 import android.util.DisplayMetrics
-import android.widget.ImageView
 import kotlinx.android.synthetic.main.activity_main.*
 
     // 前のブランチの確認のためのコミット
@@ -55,7 +54,7 @@ class MainActivity : AppCompatActivity() {
             timerText.text = "%1d:%2$02d".format(minute, second)
 
             // imageViewEnemy を左右に移動する
-            dirEnemy = imageViewMoveX(imageViewEnemy, 5, dirEnemy)
+            dirEnemy = moveEnemy(5, dirEnemy)
 
         }
 
@@ -67,14 +66,14 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    //imageViewがx方向に移動するメソッド
-    fun imageViewMoveX(imageView:ImageView , x:Int , dir:Int ): Int{
+    //imageViewEnemyが左右に移動するメソッド
+    fun moveEnemy(x:Int , dir:Int ): Int{
 
         var ret = dir
 
-        imageView.x = imageView.x + x * dir
+        imageViewEnemy.x = imageViewEnemy.x + x * dir
 
-        if(imageView.x < 0 ||  screenWidth - imageView.width < imageView.x ){
+        if(imageViewEnemy.x < 0 ||  screenWidth - imageViewEnemy.width < imageViewEnemy.x ){
             ret = dir * -1; //移動の左右の向きを反転する
         }
 
