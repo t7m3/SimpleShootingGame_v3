@@ -17,6 +17,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        var extendEnemy : ExtendimageView  // <-まずこれを宣言して、エラーをAlt+エンターで直してクラスを作成した
+                                           // その時、別ファイルでクラスを作ることを選択した
+        extendEnemy = imageViewEnemy as ExtendimageView
+        //extendEnemy = findViewById(R.id.imageViewEnemy)
+
         // スクリーンの幅と高さを取得する
         val dMetrics = DisplayMetrics()  //DisplayMetrics のインスタンスを生成する
         windowManager.defaultDisplay.getMetrics(dMetrics)  //スクリーンサイズを取得しているらしい
@@ -24,8 +29,10 @@ class MainActivity : AppCompatActivity() {
         screenHeight = dMetrics.heightPixels  //スクリーンの高さを取得
 
         // imageViewEnemy の初期位置の設定
-        imageViewEnemy.x = 50F
-        imageViewEnemy.y = screenHeight.toFloat() * 0.2F
+        //imageViewEnemy.x = 50F
+        //imageViewEnemy.y = screenHeight.toFloat() * 0.2F
+        extendEnemy.x = 50F
+        //extendEnemy.y = screenHeight.toFloat() * 0.2F
 
         // imageViewPlayer の初期位置の設定
         imageViewPlayer.x = 50F
