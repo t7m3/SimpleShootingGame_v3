@@ -59,6 +59,9 @@ class MainActivity : AppCompatActivity() {
             // imageViewEnemy を左右に移動する
             dirEnemy = moveEnemy(5, dirEnemy)
 
+            // imageViewBullet を上に移動する
+            moveBullet(5)
+
         }
 
         override fun onFinish() {
@@ -82,6 +85,12 @@ class MainActivity : AppCompatActivity() {
 
         return ret
 
+    }
+
+    //imageViewBulletが上に移動するメソッド
+    fun moveBullet(y:Int){
+
+        imageViewBullet.y = imageViewBullet.y - y
     }
 
     //画面タッチのメソッドの定義
