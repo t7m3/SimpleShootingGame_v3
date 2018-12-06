@@ -5,6 +5,7 @@ import android.os.CountDownTimer
 import android.support.v7.app.AppCompatActivity
 import android.util.DisplayMetrics
 import android.view.MotionEvent
+import android.view.View
 import kotlinx.android.synthetic.main.activity_main.*
 
     // 前のブランチの確認のためのコミット
@@ -33,9 +34,11 @@ class MainActivity : AppCompatActivity() {
         imageViewPlayer.x = 50F
         imageViewPlayer.y = screenHeight.toFloat() * 0.6F
 
-        // imageViewBullet の初期位置の設定
+        // imageViewBullet の初期位置の設定と visibilityの設定
         imageViewBullet.x = 50F
         imageViewBullet.y = screenHeight.toFloat() * 0.4F
+        imageViewBullet.visibility = View.INVISIBLE
+
 
         // タイマのインスタンスの生成
         val timer = MyCountDownTimer(5 * 60 * 1000, 10)
@@ -49,7 +52,7 @@ class MainActivity : AppCompatActivity() {
     inner class MyCountDownTimer(millisInFuture: Long, countDownInterval: Long) :
                                                 CountDownTimer(millisInFuture, countDownInterval) {
 
-        private var  dirEnemy = 1  //imageViewEnemy の 方向を保存する変数
+        private var dirEnemy = 1  //imageViewEnemy の 方向を保存する変数。＋１で右。－１で左。
 
         override fun onTick(millisUntilFinished: Long) {
             val minute = millisUntilFinished / 1000L / 60L
@@ -60,8 +63,9 @@ class MainActivity : AppCompatActivity() {
             dirEnemy = moveEnemy(5, dirEnemy)
 
             // imageViewBullet を上に移動する
-            moveBullet(5)
-
+            if(imageViewBullet.visibility  == View.VISIBLE){
+                moveBullet(5)
+            }
         }
 
         override fun onFinish() {
@@ -110,6 +114,8 @@ class MainActivity : AppCompatActivity() {
 
             MotionEvent.ACTION_UP -> {
                 textView.append("　ACTION_UP")
+                imageViewBullet.visibility = View.VISIBLE
+
             }
 
             MotionEvent.ACTION_MOVE -> {
