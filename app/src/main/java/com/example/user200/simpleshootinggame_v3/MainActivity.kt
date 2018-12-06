@@ -102,6 +102,14 @@ class MainActivity : AppCompatActivity() {
     fun moveBullet(y:Int){
 
         imageViewBullet.y = imageViewBullet.y - y
+
+        if(imageViewBullet.y <= 0){  //画面の上端になったら
+            imageViewBullet.visibility = View.INVISIBLE  // 非表示にする。
+
+            imageViewBullet.x = 0F  // 位置を左下にする
+            imageViewBullet.y = imageViewBullet.height.toFloat()  // 位置を左下にする
+
+        }
     }
 
     //画面タッチのメソッドの定義
@@ -123,7 +131,7 @@ class MainActivity : AppCompatActivity() {
                 textView.append("　ACTION_UP")
                 imageViewBullet.visibility = View.VISIBLE
                 imageViewBullet.x = ex + imageViewPlayer.width/2 -imageViewBullet.width/2
-                imageViewBullet.y = ey
+                imageViewBullet.y = imageViewPlayer.y
             }
 
             MotionEvent.ACTION_MOVE -> {
