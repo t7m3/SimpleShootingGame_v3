@@ -115,7 +115,8 @@ class MainActivity : AppCompatActivity() {
             MotionEvent.ACTION_UP -> {
                 textView.append("　ACTION_UP")
                 imageViewBullet.visibility = View.VISIBLE
-
+                imageViewBullet.x = ex + imageViewPlayer.width/2 -imageViewBullet.width/2
+                imageViewBullet.y = ey
             }
 
             MotionEvent.ACTION_MOVE -> {
