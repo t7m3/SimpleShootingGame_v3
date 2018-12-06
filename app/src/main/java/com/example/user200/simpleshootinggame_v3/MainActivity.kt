@@ -53,14 +53,21 @@ class MainActivity : AppCompatActivity() {
                                                 CountDownTimer(millisInFuture, countDownInterval) {
 
         private var dirEnemy = 1  //imageViewEnemy の 方向を保存する変数。＋１で右。－１で左。
+        private var gameState = 0  // 時間管理のための変数
 
         override fun onTick(millisUntilFinished: Long) {
             val minute = millisUntilFinished / 1000L / 60L
             val second = millisUntilFinished / 1000 % 60
             timerText.text = "%1d:%2$02d".format(minute, second)
 
-            // imageViewEnemy を左右に移動する
-            dirEnemy = moveEnemy(5, dirEnemy)
+            when(gameState++ % 3){
+                0 -> {
+                    // imageViewEnemy を左右に移動する
+                    dirEnemy = moveEnemy(5, dirEnemy)
+                }
+                1 ->{}
+                2 ->{}
+            }
 
             // imageViewBullet を上に移動する
             if(imageViewBullet.visibility  == View.VISIBLE){
