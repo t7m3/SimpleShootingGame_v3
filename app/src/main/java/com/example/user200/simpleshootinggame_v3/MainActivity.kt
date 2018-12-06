@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity
 import android.util.DisplayMetrics
 import android.view.MotionEvent
 import android.view.View
+import android.widget.ImageView
 import kotlinx.android.synthetic.main.activity_main.*
 
     // 前のブランチの確認のためのコミット
@@ -71,7 +72,13 @@ class MainActivity : AppCompatActivity() {
 
             // imageViewBullet を上に移動する
             if(imageViewBullet.visibility  == View.VISIBLE){
+
                 moveBullet(5)
+
+                //当たり判定
+                if (hit(imageViewEnemy, imageViewBullet) == true ){
+                    imageViewEnemy.visibility = View.INVISIBLE  // 当たったら非表示にする。
+                }
             }
         }
 
@@ -93,9 +100,7 @@ class MainActivity : AppCompatActivity() {
         if(imageViewEnemy.x < 0 ||  screenWidth - imageViewEnemy.width < imageViewEnemy.x ){
             ret = dir * -1;  //移動の左右の向きを反転する
         }
-
         return ret
-
     }
 
     //imageViewBulletが上に移動するメソッド
@@ -110,6 +115,16 @@ class MainActivity : AppCompatActivity() {
             imageViewBullet.y = imageViewBullet.height.toFloat()  // 位置を左下にする
 
         }
+    }
+
+    //当たり判定のメソッド　当たったら、trueを返す、当たっていなければFalseを返す
+    fun hit(enemy: ImageView, bullet: ImageView): Boolean {
+        if (enemy.y <= bullet.y && bullet.y <= enemy.y + enemy.height) {
+            if (enemy.x <= bullet.x + bullet.width / 2 && bullet.x + bullet.width / 2 <= enemy.x + enemy.width) {
+                return true
+            }
+        }
+        return false
     }
 
     //画面タッチのメソッドの定義
