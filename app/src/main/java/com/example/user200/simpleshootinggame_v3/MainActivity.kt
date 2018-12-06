@@ -13,9 +13,9 @@ class MainActivity : AppCompatActivity() {
 
     private var screenWidth = 0  //スクリーンの幅を格納する変数の宣言
     private var screenHeight = 0   //スクリーンの高さ格納する変数の宣言
-    private var  dirEnemy = 1  //imageViewEnemy の 方向を保存する変数
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
@@ -47,7 +47,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     inner class MyCountDownTimer(millisInFuture: Long, countDownInterval: Long) :
-        CountDownTimer(millisInFuture, countDownInterval) {
+                                                CountDownTimer(millisInFuture, countDownInterval) {
+
+        private var  dirEnemy = 1  //imageViewEnemy の 方向を保存する変数
 
         override fun onTick(millisUntilFinished: Long) {
             val minute = millisUntilFinished / 1000L / 60L
@@ -75,7 +77,7 @@ class MainActivity : AppCompatActivity() {
         imageViewEnemy.x = imageViewEnemy.x + x * dir
 
         if(imageViewEnemy.x < 0 ||  screenWidth - imageViewEnemy.width < imageViewEnemy.x ){
-            ret = dir * -1; //移動の左右の向きを反転する
+            ret = dir * -1;  //移動の左右の向きを反転する
         }
 
         return ret
