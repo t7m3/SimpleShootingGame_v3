@@ -30,6 +30,7 @@ class MainActivity : AppCompatActivity() {
         // imageViewEnemy の初期位置の設定
         imageViewEnemy.x = 50F
         imageViewEnemy.y = screenHeight.toFloat() * 0.2F
+        imageViewEnemy.tag = "move"
 
         // imageViewPlayer の初期位置の設定
         imageViewPlayer.x = 50F
@@ -38,7 +39,8 @@ class MainActivity : AppCompatActivity() {
         // imageViewBullet の初期位置の設定と visibilityの設定
         imageViewBullet.x = 50F
         imageViewBullet.y = screenHeight.toFloat() * 0.4F
-        imageViewBullet.visibility = View.INVISIBLE
+        //imageViewBullet.visibility = View.INVISIBLE
+        imageViewBullet.tag = "stop"
 
 
         // タイマのインスタンスの生成
@@ -64,20 +66,26 @@ class MainActivity : AppCompatActivity() {
             when(gameState++ % 3){
                 0 -> {
                     // imageViewEnemy を左右に移動する
-                    dirEnemy = moveEnemy(5, dirEnemy)
+                    if (imageViewEnemy.tag == "move")
+                        dirEnemy = moveEnemy(5, dirEnemy)
                 }
                 1 ->{}
                 2 ->{}
             }
 
             // imageViewBullet を上に移動する
-            if(imageViewBullet.visibility  == View.VISIBLE){
+            if(imageViewBullet.tag  == "move"){
 
                 moveBullet(5)
 
                 //当たり判定
                 if (hit(imageViewEnemy, imageViewBullet) == true ){
-                    imageViewEnemy.visibility = View.INVISIBLE  // 当たったら非表示にする。
+
+                    imageViewEnemy.tag = "stop"  // 当たったら移動を止める
+
+                    imageViewBullet.tag = "stop"
+                    imageViewBullet.x = 0F  // 位置を左下にする
+                    imageViewBullet.y = screenHeight.toFloat() * 0.7F  // 位置を左下にする
                 }
             }
         }
@@ -109,11 +117,10 @@ class MainActivity : AppCompatActivity() {
         imageViewBullet.y = imageViewBullet.y - y
 
         if(imageViewBullet.y <= 0){  //画面の上端になったら
-            imageViewBullet.visibility = View.INVISIBLE  // 非表示にする。
-
+            //imageViewBullet.visibility = View.INVISIBLE  // 非表示にする。
+            imageViewBullet.tag = "stop"
             imageViewBullet.x = 0F  // 位置を左下にする
-            imageViewBullet.y = imageViewBullet.height.toFloat()  // 位置を左下にする
-
+            imageViewBullet.y = screenHeight.toFloat() * 0.7F  // 位置を左下にする
         }
     }
 
@@ -145,6 +152,7 @@ class MainActivity : AppCompatActivity() {
             MotionEvent.ACTION_UP -> {
                 textView.append("　ACTION_UP")
                 imageViewBullet.visibility = View.VISIBLE
+                imageViewBullet.tag = "move"
                 imageViewBullet.x = ex + imageViewPlayer.width/2 -imageViewBullet.width/2
                 imageViewBullet.y = imageViewPlayer.y
             }
