@@ -120,7 +120,8 @@ public class MainActivity : AppCompatActivity() {
                     gameState = 1  // gameState を爆発の状態にする
                     explosion_millisUntilFinished = millisUntilFinished// 爆発したときの時刻（のようなもの）を保存しておく
 
-                    imageViewBullet.tag = "stop"
+                    //imageViewBullet.tag = "stop"
+                    imageBullet.status = "stop" //クラスBulletの実験
                     imageViewBullet.x = 0F  // 位置を左下にする
                     imageViewBullet.y = screenHeight.toFloat() * 0.7F  // 位置を左下にする
                 }
