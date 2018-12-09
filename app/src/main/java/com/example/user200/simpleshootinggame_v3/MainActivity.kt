@@ -42,6 +42,22 @@ class MainActivity : AppCompatActivity() {
         //imageViewBullet.visibility = View.INVISIBLE
         imageViewBullet.tag = "stop"
 
+        //var imageArray: Array<ImageView?> = arrayOfNulls(3)
+        //val imageArray: Array<ImageView?> = arrayOfNulls(100)
+        val imageArray = arrayOfNulls<ImageView?>(5)
+        //imageArray[0] = ImageView(this)
+        //imageArray[0]!!.setImageResource(R.drawable.arw03up)
+        for (i in imageArray.indices){
+            imageArray[i] = ImageView(this)
+            imageArray[i]!!.setImageResource(R.drawable.arw02up)
+            imageArray[i]!!.x = i * 50F
+            imageArray[i]!!.y = 0F
+            layout.addView(imageArray[i])
+        }
+
+        //val imageView = ImageView(this)  // ImageViewのインスタンス生成
+        //imageView.setImageResource(R.drawable.arw03up)  // 生成したインスタンスに画像を指定する
+        //layout.addView(imageView)  // 生成したインスタンスをlayoutに追加する
 
         // タイマのインスタンスの生成
         val timer = MyCountDownTimer(5 * 60 * 1000, 10)
