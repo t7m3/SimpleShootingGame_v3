@@ -57,6 +57,7 @@ class MainActivity : AppCompatActivity() {
 
         private var dirEnemy = 1  //imageViewEnemy の 方向を保存する変数。＋１で右。－１で左。
         private var gameState = 0  // 時間管理のための変数
+        private var explosion_millisUntilFinished = 0L // 爆発したときの時刻（のようなもの）を保存する変数
 
         override fun onTick(millisUntilFinished: Long) {
             val minute = millisUntilFinished / 1000L / 60L
@@ -69,7 +70,13 @@ class MainActivity : AppCompatActivity() {
                     if (imageViewEnemy.tag == "move")
                         dirEnemy = moveEnemy(5, dirEnemy)
                 }
-                1 ->{}
+                1 ->{
+                    if (explosion_millisUntilFinished - millisUntilFinished >= 3000) {  // 爆発の時間が経過したら
+                        gameState = 0  // gameState をシューティングの状態にする
+                        imageViewEnemy.setImageResource(R.drawable.rocket)  // imageViewEnemyの画像をロケットの画像に変える
+                        imageViewEnemy.tag = "move"  // imageViewEnemy が移動する
+                    }
+                }
                 2 ->{}
             }
 
@@ -79,10 +86,12 @@ class MainActivity : AppCompatActivity() {
                 moveBullet(5)
 
                 //当たり判定
-                if (hit(imageViewEnemy, imageViewBullet) == true ){
+                if (hit(imageViewEnemy, imageViewBullet) == true ){  //当たった
 
                     imageViewEnemy.tag = "stop"  // 当たったら移動を止める
                     imageViewEnemy.setImageResource(R.drawable.misc39b)  // imageViewEnemyの画像を爆発の画像に変える
+                    gameState = 1  // gameState を爆発の状態にする
+                    explosion_millisUntilFinished = millisUntilFinished// 爆発したときの時刻（のようなもの）を保存しておく
 
                     imageViewBullet.tag = "stop"
                     imageViewBullet.x = 0F  // 位置を左下にする
