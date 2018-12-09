@@ -11,7 +11,6 @@ import kotlinx.android.synthetic.main.activity_main.*
 
     // 前のブランチの確認のためのコミット
 
-
 class MainActivity : AppCompatActivity() {
 
     private var screenWidth = 0  //スクリーンの幅を格納する変数の宣言
@@ -83,6 +82,7 @@ class MainActivity : AppCompatActivity() {
                 if (hit(imageViewEnemy, imageViewBullet) == true ){
 
                     imageViewEnemy.tag = "stop"  // 当たったら移動を止める
+                    imageViewEnemy.setImageResource(R.drawable.misc39b)  // imageViewEnemyの画像を爆発の画像に変える
 
                     imageViewBullet.tag = "stop"
                     imageViewBullet.x = 0F  // 位置を左下にする
