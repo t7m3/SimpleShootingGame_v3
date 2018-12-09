@@ -11,10 +11,11 @@ import kotlinx.android.synthetic.main.activity_main.*
 
     // 前のブランチの確認のためのコミット
 
-class MainActivity : AppCompatActivity() {
+public class MainActivity : AppCompatActivity() {
 
     private var screenWidth = 0  //スクリーンの幅を格納する変数の宣言
     private var screenHeight = 0   //スクリーンの高さ格納する変数の宣言
+    private lateinit var imageBullet :Bullet  //クラスBulletの実験
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -36,6 +37,8 @@ class MainActivity : AppCompatActivity() {
         imageViewPlayer.x = 50F
         imageViewPlayer.y = screenHeight.toFloat() * 0.6F
 
+        imageBullet = Bullet(imageViewBullet, screenHeight)  //クラスBulletの実験
+
         // imageViewBullet の初期位置の設定と visibilityの設定
         imageViewBullet.x = 50F
         imageViewBullet.y = screenHeight.toFloat() * 0.4F
@@ -51,7 +54,7 @@ class MainActivity : AppCompatActivity() {
             imageArray[i] = ImageView(this)  //インスタンスの生成
             imageArray[i]!!.setImageResource(R.drawable.arw02up)  //画像を設定する
             imageArray[i]!!.x = i * 50F
-            imageArray[i]!!.y = 0F
+            imageArray[i]!!.y = screenHeight.toFloat() * 0.8F
             layout.addView(imageArray[i])  // 画面に追加する
         }
 
@@ -103,9 +106,11 @@ class MainActivity : AppCompatActivity() {
             }
 
             // imageViewBullet を上に移動する
-            if(imageViewBullet.tag  == "move"){
+            //if(imageViewBullet.tag  == "move"){
+            if(imageBullet.status  == "move"){
 
-                moveBullet(5)
+                //moveBullet(5)
+                imageBullet.move(5)  //クラスBulletの実験
 
                 //当たり判定
                 if (hit(imageViewEnemy, imageViewBullet) == true ){  //当たった
@@ -184,7 +189,8 @@ class MainActivity : AppCompatActivity() {
             MotionEvent.ACTION_UP -> {
                 textView.append("　ACTION_UP")
                 imageViewBullet.visibility = View.VISIBLE
-                imageViewBullet.tag = "move"
+                //imageViewBullet.tag = "move"
+                imageBullet.status = "move" //クラスBulletの実験
                 imageViewBullet.x = ex + imageViewPlayer.width/2 -imageViewBullet.width/2
                 imageViewBullet.y = imageViewPlayer.y
             }
