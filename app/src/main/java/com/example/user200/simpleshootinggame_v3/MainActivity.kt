@@ -11,6 +11,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 
     // 前のブランチの確認のためのコミット
 
+
 class MainActivity : AppCompatActivity() {
 
     private var screenWidth = 0  //スクリーンの幅を格納する変数の宣言
