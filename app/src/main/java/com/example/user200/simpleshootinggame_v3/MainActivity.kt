@@ -40,10 +40,10 @@ public class MainActivity : AppCompatActivity() {
         imageBullet = Bullet(imageViewBullet, screenHeight)  //クラスBulletの実験
 
         // imageViewBullet の初期位置の設定と visibilityの設定
-        imageBullet.imageView.x = 50F
-        imageBullet.imageView.y = screenHeight.toFloat() * 0.4F
+        imageViewBullet.x = 50F
+        imageViewBullet.y = screenHeight.toFloat() * 0.4F
         //imageViewBullet.visibility = View.INVISIBLE
-        //imageViewBullet.tag = "stop"
+        imageViewBullet.tag = "stop"
 
         //var imageArray: Array<ImageView?> = arrayOfNulls(3)
         //val imageArray: Array<ImageView?> = arrayOfNulls(100)
@@ -113,7 +113,7 @@ public class MainActivity : AppCompatActivity() {
                 imageBullet.move(5)  //クラスBulletの実験
 
                 //当たり判定
-                if (hit(imageViewEnemy, imageBullet.imageView) == true ){  //当たった
+                if (hit(imageViewEnemy, imageViewBullet) == true ){  //当たった
 
                     imageViewEnemy.tag = "stop"  // 当たったら移動を止める
                     imageViewEnemy.setImageResource(R.drawable.misc39b)  // imageViewEnemyの画像を爆発の画像に変える
@@ -122,8 +122,8 @@ public class MainActivity : AppCompatActivity() {
 
                     //imageViewBullet.tag = "stop"
                     imageBullet.status = "stop" //クラスBulletの実験
-                    imageBullet.imageView.x = 0F  // 位置を左下にする
-                    imageBullet.imageView.y = screenHeight.toFloat() * 0.7F  // 位置を左下にする
+                    imageViewBullet.x = 0F  // 位置を左下にする
+                    imageViewBullet.y = screenHeight.toFloat() * 0.7F  // 位置を左下にする
                 }
             }
         }
@@ -150,17 +150,17 @@ public class MainActivity : AppCompatActivity() {
     }
 
     //imageViewBulletが上に移動するメソッド
-    //fun moveBullet(y:Int){
+    fun moveBullet(y:Int){
 
-        //imageViewBullet.y = imageViewBullet.y - y
+        imageViewBullet.y = imageViewBullet.y - y
 
-        //if(imageViewBullet.y <= 0){  //画面の上端になったら
-        //    //imageViewBullet.visibility = View.INVISIBLE  // 非表示にする。
-        //    imageViewBullet.tag = "stop"
-        //    imageViewBullet.x = 0F  // 位置を左下にする
-        //    imageViewBullet.y = screenHeight.toFloat() * 0.7F  // 位置を左下にする
-        //}
-    //}
+        if(imageViewBullet.y <= 0){  //画面の上端になったら
+            //imageViewBullet.visibility = View.INVISIBLE  // 非表示にする。
+            imageViewBullet.tag = "stop"
+            imageViewBullet.x = 0F  // 位置を左下にする
+            imageViewBullet.y = screenHeight.toFloat() * 0.7F  // 位置を左下にする
+        }
+    }
 
     //当たり判定のメソッド　当たったら、trueを返す、当たっていなければFalseを返す
     fun hit(enemy: ImageView, bullet: ImageView): Boolean {
@@ -189,10 +189,11 @@ public class MainActivity : AppCompatActivity() {
 
             MotionEvent.ACTION_UP -> {
                 textView.append("　ACTION_UP")
-                imageBullet.imageView.visibility = View.VISIBLE
+                imageViewBullet.visibility = View.VISIBLE
+                //imageViewBullet.tag = "move"
                 imageBullet.status = "move" //クラスBulletの実験
-                imageBullet.imageView.x = ex + imageViewPlayer.width/2 -imageBullet.imageView.width/2
-                imageBullet.imageView.y = imageViewPlayer.y
+                imageViewBullet.x = ex + imageViewPlayer.width/2 -imageViewBullet.width/2
+                imageViewBullet.y = imageViewPlayer.y
             }
 
             MotionEvent.ACTION_MOVE -> {

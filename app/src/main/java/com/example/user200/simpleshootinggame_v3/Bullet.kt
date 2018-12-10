@@ -2,22 +2,21 @@ package com.example.user200.simpleshootinggame_v3
 
 import android.widget.ImageView
 
-public class Bullet(image:ImageView, height:Int) {
+public class Bullet(imageView: ImageView,height:Int) {
 
-    public val imageView = image
-    private val screenHeight = height
-
-    public var status = "stop"
+    val image = imageView
+    val screenHeight = height
+    var status = "stop"
 
     public fun move(y:Int){
 
-        imageView.y = imageView.y - y
+        image.y = image.y - y
 
-        if(imageView.y <= 0){  //画面の上端になったら
+        if(image.y <= 0){  //画面の上端になったら
             //image.visibility = View.INVISIBLE  // 非表示にする。
-            status = "stop"
-            imageView.x = 0F  // 位置を左下にする
-            imageView.y = screenHeight.toFloat() * 0.7F  // 位置を左下にする
+            this.status = "stop"
+            image.x = 0F  // 位置を左下にする
+            image.y = screenHeight.toFloat() * 0.7F  // 位置を左下にする
         }
 
     }
