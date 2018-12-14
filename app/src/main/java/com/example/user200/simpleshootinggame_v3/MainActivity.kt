@@ -83,6 +83,7 @@ public class MainActivity : AppCompatActivity() {
         private var dirEnemy = 1  //imageViewEnemy の 方向を保存する変数。＋１で右。－１で左。
         private var gameState = 0  // 時間管理のための変数
         private var explosion_millisUntilFinished = 0L // 爆発したときの時刻（のようなもの）を保存する変数
+        private var auto = 1F  //オートプレイ用の変数
 
         override fun onTick(millisUntilFinished: Long) {
             val minute = millisUntilFinished / 1000L / 60L
@@ -125,6 +126,21 @@ public class MainActivity : AppCompatActivity() {
                     imageBullet.imageView.x = 0F  // 位置を左下にする
                     imageBullet.imageView.y = screenHeight.toFloat() * 0.7F  // 位置を左下にする
                 }
+             }
+
+            //オートプレイ
+            if ( millisUntilFinished / 1000 % 5 == 0L && imageBullet.status == "stop"){  //一定時間ごとに
+                imageBullet.imageView.visibility = View.VISIBLE
+                imageBullet.status = "move" //クラスBulletの実験  //弾を発射する
+                imageBullet.imageView.x =imageViewPlayer.x + imageViewPlayer.width/2 -imageBullet.imageView.width/2
+                imageBullet.imageView.y = imageViewPlayer.y
+            }
+            imageViewPlayer.x = imageViewPlayer.x + auto
+            if (500 < imageViewPlayer.x){
+                auto = -1.5F
+            }
+            else if (imageViewPlayer.x < 100){
+                auto = 3F
             }
         }
 
