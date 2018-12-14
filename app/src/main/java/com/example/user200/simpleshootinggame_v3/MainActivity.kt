@@ -116,7 +116,7 @@ public class MainActivity : AppCompatActivity() {
                 if (hit(imageViewEnemy, imageBullet.imageView) == true ){  //当たった
 
                     imageViewEnemy.tag = "stop"  // 当たったら移動を止める
-                    imageViewEnemy.setImageResource(R.drawable.misc39b)  // imageViewEnemyの画像を爆発の画像に変える
+                    imageViewEnemy.setImageResource(R.drawable.s5z8k0g6)  // imageViewEnemyの画像を爆発の画像に変える
                     gameState = 1  // gameState を爆発の状態にする
                     explosion_millisUntilFinished = millisUntilFinished// 爆発したときの時刻（のようなもの）を保存しておく
 
