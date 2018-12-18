@@ -22,7 +22,12 @@ public class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        //スコアの初期設定。０にする。
         textViewScore.text = "0"
+
+        textViewScore.bringToFront()
+        textView.bringToFront()
+        timerText.bringToFront()
 
         // スクリーンの幅と高さを取得する
         val dMetrics = DisplayMetrics()  //DisplayMetrics のインスタンスを生成する
