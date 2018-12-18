@@ -22,6 +22,8 @@ public class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        textViewScore.text = "0"
+
         // スクリーンの幅と高さを取得する
         val dMetrics = DisplayMetrics()  //DisplayMetrics のインスタンスを生成する
         windowManager.defaultDisplay.getMetrics(dMetrics)  //スクリーンサイズを取得しているらしい
@@ -78,8 +80,8 @@ public class MainActivity : AppCompatActivity() {
         //こんなこともできる・・・画面で作ったインスタンスを配列に格納して使う
         val imageArrayA = arrayOfNulls<ImageView?>(5)
         imageArrayA[0] = imageViewBullet
-        imageArrayA[0]!!.x = 100F
-        imageArrayA[0]!!.x = screenHeight.toFloat() * 0.4F
+        imageArrayA[0]!!.x = 0F
+        imageArrayA[0]!!.y = screenHeight.toFloat() * 0.7F
 
         // タイマのインスタンスの生成
         val timer = MyCountDownTimer(150 * 60 * 1000, 10)
@@ -138,9 +140,11 @@ public class MainActivity : AppCompatActivity() {
                     imageBullet.state = "stop" //クラスBulletの実験
                     imageBullet.imageView.x = 0F  // 位置を左下にする
                     imageBullet.imageView.y = screenHeight.toFloat() * 0.7F  // 位置を左下にする
+
+                    //スコアを＋１０する
+                    textViewScore.text = (Integer.parseInt(textViewScore.text.toString())+10).toString()
                 }
              }
-
             //オートプレイ
             if ( millisUntilFinished / 1000 % 5 == 0L && imageBullet.state == "stop"){  //一定時間ごとに
                 imageBullet.imageView.visibility = View.VISIBLE
