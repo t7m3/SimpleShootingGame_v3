@@ -8,6 +8,13 @@
         tools:context=".MainActivity" android:id="@+id/layout">
 
     <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" app:srcCompat="@drawable/tumblr"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
+            android:id="@+id/imageView2" android:scaleType="centerCrop" app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintHorizontal_bias="1.0"/>
+
+    <ImageView
             android:layout_width="48dp"
             android:layout_height="48dp" app:srcCompat="@drawable/rocket" tools:layout_editor_absoluteY="74dp"
             tools:layout_editor_absoluteX="39dp" android:id="@+id/imageViewEnemy"/>
@@ -50,4 +57,5 @@
             android:layout_marginLeft="8dp" android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="8dp" android:layout_marginRight="8dp" app:layout_constraintHorizontal_bias="0.895"
             app:layout_constraintVertical_bias="0.098"/>
+
 </android.support.constraint.ConstraintLayout>
