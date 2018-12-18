@@ -47,7 +47,7 @@ public class MainActivity : AppCompatActivity() {
 
         //var imageArray: Array<ImageView?> = arrayOfNulls(3)
         //val imageArray: Array<ImageView?> = arrayOfNulls(100)
-        val imageArray = arrayOfNulls<ImageView?>(5)  //配列の宣言
+/*        val imageArray = arrayOfNulls<ImageView?>(5)  //配列の宣言
         //imageArray[0] = ImageView(this)
         //imageArray[0]!!.setImageResource(R.drawable.arw03up)
         for (i in imageArray.indices){
@@ -55,7 +55,20 @@ public class MainActivity : AppCompatActivity() {
             imageArray[i]!!.setImageResource(R.drawable.arw02up)  //画像を設定する
             imageArray[i]!!.x = i * 50F
             imageArray[i]!!.y = screenHeight.toFloat() * 0.8F
-            layout.addView(imageArray[i])  // 画面に追加する
+            layout.addView(imageArray[i])  // 画面（layout）に追加する
+        }
+*/
+
+        // Bulletクラス配列化の実験
+        val imageArray = arrayOfNulls<Bullet?>(5)  //配列の宣言
+        var image : ImageView
+        for (i in imageArray.indices){
+            image = ImageView(this)  //インスタンスの生成
+            image.setImageResource(R.drawable.arw02up)  //画像を設定する
+            image.x = i * 50F
+            image.y = screenHeight.toFloat() * 0.8F
+            imageArray[i] = Bullet(image, screenHeight)
+            layout.addView(imageArray[i]!!.imageView)  // 画面（layout）に追加する
         }
 
         //val imageView = ImageView(this)  // ImageViewのインスタンス生成
