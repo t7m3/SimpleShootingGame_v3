@@ -69,8 +69,8 @@ public class MainActivity : AppCompatActivity() {
         imageArrayA[0]!!.x = screenHeight.toFloat() * 0.4F
 
         // タイマのインスタンスの生成
-        val timer = MyCountDownTimer(5 * 60 * 1000, 10)
-        timerText.text = "5:00"
+        val timer = MyCountDownTimer(150 * 60 * 1000, 10)
+        timerText.text = "150:00"
 
         // タイマのスタート
         timer.start()  // <- これで十分。
@@ -108,7 +108,7 @@ public class MainActivity : AppCompatActivity() {
 
             // imageViewBullet を上に移動する
             //if(imageViewBullet.tag  == "move"){
-            if(imageBullet.status  == "move"){
+            if(imageBullet.state  == "move"){
 
                 //moveBullet(5)
                 imageBullet.move(5)  //クラスBulletの実験
@@ -122,16 +122,16 @@ public class MainActivity : AppCompatActivity() {
                     explosion_millisUntilFinished = millisUntilFinished// 爆発したときの時刻（のようなもの）を保存しておく
 
                     //imageViewBullet.tag = "stop"
-                    imageBullet.status = "stop" //クラスBulletの実験
+                    imageBullet.state = "stop" //クラスBulletの実験
                     imageBullet.imageView.x = 0F  // 位置を左下にする
                     imageBullet.imageView.y = screenHeight.toFloat() * 0.7F  // 位置を左下にする
                 }
              }
 
             //オートプレイ
-            if ( millisUntilFinished / 1000 % 5 == 0L && imageBullet.status == "stop"){  //一定時間ごとに
+            if ( millisUntilFinished / 1000 % 5 == 0L && imageBullet.state == "stop"){  //一定時間ごとに
                 imageBullet.imageView.visibility = View.VISIBLE
-                imageBullet.status = "move" //クラスBulletの実験  //弾を発射する
+                imageBullet.state = "move" //クラスBulletの実験  //弾を発射する
                 imageBullet.imageView.x =imageViewPlayer.x + imageViewPlayer.width/2 -imageBullet.imageView.width/2
                 imageBullet.imageView.y = imageViewPlayer.y
             }
@@ -206,7 +206,7 @@ public class MainActivity : AppCompatActivity() {
             MotionEvent.ACTION_UP -> {
                 textView.append("　ACTION_UP")
                 imageBullet.imageView.visibility = View.VISIBLE
-                imageBullet.status = "move" //クラスBulletの実験
+                imageBullet.state = "move" //クラスBulletの実験
                 imageBullet.imageView.x = ex + imageViewPlayer.width/2 -imageBullet.imageView.width/2
                 imageBullet.imageView.y = imageViewPlayer.y
             }

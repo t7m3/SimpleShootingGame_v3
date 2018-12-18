@@ -7,7 +7,7 @@ public class Bullet(image:ImageView, height:Int) {
     public val imageView = image
     private val screenHeight = height
 
-    public var status = "stop"
+    public var state = "stop"
 
     public fun move(y:Int){
 
@@ -15,7 +15,7 @@ public class Bullet(image:ImageView, height:Int) {
 
         if(imageView.y <= 0){  //画面の上端になったら
             //image.visibility = View.INVISIBLE  // 非表示にする。
-            status = "stop"
+            state = "stop"
             imageView.x = 0F  // 位置を左下にする
             imageView.y = screenHeight.toFloat() * 0.7F  // 位置を左下にする
         }
