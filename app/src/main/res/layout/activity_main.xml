@@ -13,7 +13,7 @@
             android:layout_height="513dp"
             android:id="@+id/textViewBack"
             tools:layout_editor_absoluteX="0dp" tools:layout_editor_absoluteY="0dp"
-            android:textColor="@android:color/holo_green_light" android:background="@drawable/tumblr"/>
+            android:textColor="@android:color/holo_green_light" android:background="@drawable/tumblr_o3_1280"/>
 
     <ImageView
             android:layout_width="48dp"
