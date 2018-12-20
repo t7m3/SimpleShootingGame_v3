@@ -7,14 +7,13 @@
         android:layout_height="match_parent"
         tools:context=".MainActivity" android:id="@+id/layout">
 
-    <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="0dp" app:srcCompat="@drawable/tumblr"
-            android:id="@+id/imageViewback" android:scaleType="centerCrop"
-            app:layout_constraintTop_toBottomOf="@+id/textViewScore"
-            android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toTopOf="@+id/textView" tools:layout_editor_absoluteX="-2dp"
-            app:layout_constraintVertical_bias="0.0"/>
+    <TextView
+            android:text="TextViewBack"
+            android:layout_width="388dp"
+            android:layout_height="513dp"
+            android:id="@+id/textViewBack"
+            tools:layout_editor_absoluteX="0dp" tools:layout_editor_absoluteY="0dp"
+            android:textColor="@android:color/holo_green_light" android:background="@drawable/tumblr"/>
 
     <ImageView
             android:layout_width="48dp"
@@ -26,28 +25,27 @@
             tools:layout_editor_absoluteX="40dp" android:id="@+id/imageViewPlayer"/>
     <ImageView
             android:layout_width="24dp"
-            android:layout_height="24dp" app:srcCompat="@drawable/arw02up" tools:layout_editor_absoluteY="213dp"
-            tools:layout_editor_absoluteX="64dp" android:id="@+id/imageViewBullet"/>
+            android:layout_height="24dp" app:srcCompat="@drawable/arw02up" tools:layout_editor_absoluteY="171dp"
+            tools:layout_editor_absoluteX="32dp" android:id="@+id/imageViewBullet"/>
     <TextView
             android:text="TextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/textView"
-            android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp"
-            android:layout_marginStart="8dp" app:layout_constraintHorizontal_bias="0.316"
-    />
+            android:layout_marginStart="8dp" app:layout_constraintHorizontal_bias="0.306"
+            android:textColor="@android:color/holo_blue_bright" android:layout_marginBottom="44dp"/>
     <TextView
             android:text="timerText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="8dp" android:id="@+id/timerText"
+            android:layout_marginTop="16dp" android:id="@+id/timerText"
             android:layout_marginStart="8dp"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp" android:layout_marginEnd="8dp"
             app:layout_constraintEnd_toEndOf="parent" android:layout_marginRight="8dp"
-            app:layout_constraintHorizontal_bias="0.859"/>
+            app:layout_constraintHorizontal_bias="0.973" android:textColor="@android:color/holo_blue_bright"/>
     <TextView
             android:text="textViewScore"
             android:layout_width="wrap_content"
@@ -55,8 +53,9 @@
             android:id="@+id/textViewScore"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginLeft="8dp" android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="8dp" android:layout_marginRight="8dp" app:layout_constraintHorizontal_bias="0.844"
-            android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/timerText"
-    />
+            android:layout_marginEnd="8dp" android:layout_marginRight="8dp" app:layout_constraintHorizontal_bias="0.971"
+            android:layout_marginTop="12dp" app:layout_constraintTop_toBottomOf="@+id/timerText"
+            android:textColor="@android:color/holo_blue_bright"/>
+
 
 </android.support.constraint.ConstraintLayout>
