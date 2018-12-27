@@ -7,7 +7,11 @@ import android.util.DisplayMetrics
 import android.view.MotionEvent
 import android.view.View
 import android.widget.ImageView
+import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_main.*
+import com.bumptech.glide.request.target.GlideDrawableImageViewTarget
+
+
 
     // 前のブランチの確認のためのコミット
 
@@ -21,6 +25,10 @@ public class MainActivity : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        var target = GlideDrawableImageViewTarget(imageViewGif)  // gifアニメーション の実験
+        Glide.with(this).load(R.raw.daibakuhatsu).into(target);  // gifアニメーション の実験
+        imageViewGif.visibility = View.INVISIBLE  // gifアニメーション の実験
 
         //スコアの初期設定。０にする。
         textViewScore.text = "0"
@@ -119,7 +127,12 @@ public class MainActivity : AppCompatActivity() {
                 1 ->{
                     if (explosion_millisUntilFinished - millisUntilFinished >= 3000) {  // 爆発の時間が経過したら
                         gameState = 0  // gameState をシューティングの状態にする
-                        imageViewEnemy.setImageResource(R.drawable.rocket)  // imageViewEnemyの画像をロケットの画像に変える
+
+                        // imageViewEnemyの画像をロケットの画像に変える
+                        //imageViewEnemy.setImageResource(R.drawable.rocket)
+                        imageViewEnemy.visibility = View.VISIBLE
+                        imageViewGif.visibility = View.INVISIBLE
+
                         imageViewEnemy.tag = "move"  // imageViewEnemy が移動する
                     }
                 }
@@ -137,7 +150,14 @@ public class MainActivity : AppCompatActivity() {
                 if (hit(imageViewEnemy, imageBullet.imageView) == true ){  //当たった
 
                     imageViewEnemy.tag = "stop"  // 当たったら移動を止める
-                    imageViewEnemy.setImageResource(R.drawable.s5z8k0g6)  // imageViewEnemyの画像を爆発の画像に変える
+
+                    // imageViewEnemyの画像を爆発の画像に変える
+                    //imageViewEnemy.setImageResource(R.drawable.s5z8k0g6)
+                    imageViewEnemy.visibility = View.INVISIBLE
+                    imageViewGif.x = imageViewEnemy.x  // gifアニメーション の実験
+                    imageViewGif.y = imageViewEnemy.y  // gifアニメーション の実験
+                    imageViewGif.visibility = View.VISIBLE  // gifアニメーション の実験
+
                     gameState = 1  // gameState を爆発の状態にする
                     explosion_millisUntilFinished = millisUntilFinished// 爆発したときの時刻（のようなもの）を保存しておく
 
